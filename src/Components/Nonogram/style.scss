@@ -1,0 +1,57 @@
+.game {
+    .clue-wrap {
+        display: flex;
+        .nonogram {
+            width: 450px;
+            padding: 5px;
+            
+            
+            display: flex;
+            flex-wrap: wrap;
+            .tile {
+                border: 1px solid black;
+                width: 100px;
+                height: 100px;
+                margin: 5px;
+            }
+            .inactive {
+                background-color: bisque;
+            }
+            .active {
+                background-color: black;
+            }
+            .marked {
+                background-color: darkred;
+            }
+        }
+        .clue-column {
+            display: flex;
+            flex-direction: column;
+            width: 120px;
+            height: 450px;
+            padding: 5px;
+            
+            .clue {
+                border: 1px solid black;
+                width: 100px;
+                height: 100px;
+                margin: 5px 5px 5px 0;
+            }
+        }
+    }
+    .clue-row {
+        display: flex;
+        width: 450px;
+        height: 120px;
+        padding: 5px;
+        
+        .clue {
+            border: 1px solid black;
+            width: 100px;
+            height: 100px;
+            margin: 0 5px 5px 5px;
+            
+        }
+    
+    }
+}

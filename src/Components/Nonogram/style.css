@@ -1,0 +1,40 @@
+.game .clue-wrap {
+  display: flex; }
+  .game .clue-wrap .nonogram {
+    width: 450px;
+    padding: 5px;
+    display: flex;
+    flex-wrap: wrap; }
+    .game .clue-wrap .nonogram .tile {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      margin: 5px; }
+    .game .clue-wrap .nonogram .inactive {
+      background-color: bisque; }
+    .game .clue-wrap .nonogram .active {
+      background-color: black; }
+    .game .clue-wrap .nonogram .marked {
+      background-color: darkred; }
+  .game .clue-wrap .clue-column {
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    height: 450px;
+    padding: 5px; }
+    .game .clue-wrap .clue-column .clue {
+      border: 1px solid black;
+      width: 100px;
+      height: 100px;
+      margin: 5px 5px 5px 0; }
+
+.game .clue-row {
+  display: flex;
+  width: 450px;
+  height: 120px;
+  padding: 5px; }
+  .game .clue-row .clue {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    margin: 0 5px 5px 5px; }
