@@ -13,11 +13,108 @@ class Nonogram extends Component {
                 ]
          }
     }
-
     renderTile = i => {
-        return <div 
+        return (<div 
                 onClick = {() => {this.handleClick(i)}}
-                className={`tile  ${this.state.tiles[i]}`} />
+                className={`tile  ${this.state.tiles[i]}`} />)
+    }
+    renderRowClue = row => {
+        const tiles = this.state.solution;
+        const matchRow = (thisRow) => {
+            const rowOne = ['active', 'marked', 'active', 'active']
+            const rowTwo = ['marked', 'marked', 'marked', 'active']
+            const rowThree = ['active', 'active', 'active', 'marked']
+            const rowFour = ['marked', 'marked', 'marked', 'active']
+            if (thisRow.join() === rowOne.join()) {
+                return (<div className="clue">1 2</div>)
+            }
+            else if (thisRow.join() === rowTwo.join()) {
+                return (<div className="clue">1</div>)
+            }
+            else if (thisRow.join() === rowThree.join()) {
+                return (<div className="clue">3</div>)
+            }
+            else if (thisRow.join() === rowFour.join()) {
+                return (<div className="clue">1</div>)
+            }
+        }
+        if (row === 1) {
+            let indexes = [0, 1, 2, 3]
+            const thisRow = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchRow(thisRow)
+        }
+        else if (row === 2) {
+            let indexes = [4, 5, 6, 7]
+            const thisRow = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchRow(thisRow)
+        }
+        else if (row === 3) {
+            let indexes = [8, 9, 10, 11]
+            const thisRow = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchRow(thisRow)
+        }
+        else if (row === 4) {
+            let indexes = [12, 13, 14, 15]
+            const thisRow = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchRow(thisRow)
+        }
+    }
+    renderColumnClue = column => {
+        const tiles = this.state.solution;
+        const matchColumn = (thisColumn) => {
+            const columnOne = ['active', 'marked', 'active', 'marked']
+            const columnTwo = ['marked', 'marked', 'active', 'marked']
+            const columnThree = ['active', 'marked', 'active', 'marked']
+            const columnFour = ['active', 'active', 'marked', 'active']
+            if (thisColumn.join() === columnOne.join()) {
+                return (<div className="clue">1 1</div>)
+            }
+            else if (thisColumn.join() === columnTwo.join()) {
+                return (<div className="clue">1</div>)
+            }
+            else if (thisColumn.join() === columnThree.join()) {
+                return (<div className="clue">1 1</div>)
+            }
+            else if (thisColumn.join() === columnFour.join()) {
+                return (<div className="clue">2 1</div>)
+            }
+        }
+        if (column === 1) {
+            let indexes = [0, 4, 8, 12]
+            const thisColumn = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchColumn(thisColumn)
+        }
+        else if (column === 2) {
+            let indexes = [1, 5, 9, 13]
+            const thisColumn = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchColumn(thisColumn)
+        }
+        else if (column === 3) {
+            let indexes = [2, 6, 10, 12]
+            const thisColumn = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchColumn(thisColumn)
+        }
+        else if (column === 4) {
+            let indexes = [3, 7, 11, 15]
+            const thisColumn = tiles.filter((tile, index) => {
+                return indexes.indexOf(index) !== -1
+            })
+            return matchColumn(thisColumn)
+        }
     }
     handleClick = i => {
         const tiles = this.state.tiles.slice();
@@ -31,7 +128,7 @@ class Nonogram extends Component {
     }
     checkGame = () => {
         const { tiles, solution } = this.state;
-        for(let i=0; i<16; i++) {
+        for(let i = 0; i < 16; i ++) {
             if(tiles[i] !== solution[i]) {
                 return;
             }
@@ -40,6 +137,7 @@ class Nonogram extends Component {
     }
     render() {
         this.checkGame();
+        // this.renderRowClue(1)
         return (
             <div className="game">
                 <div className="clue-wrap">
@@ -62,17 +160,17 @@ class Nonogram extends Component {
                         {this.renderTile(15)}
                     </div>
                     <div className="clue-column">
-                        <div className="clue">1 2</div>
-                        <div className="clue">1</div>
-                        <div className="clue">3</div>
-                        <div className="clue">1</div>
+                        {this.renderRowClue(1)}
+                        {this.renderRowClue(2)}
+                        {this.renderRowClue(3)}
+                        {this.renderRowClue(4)}
                     </div>
                 </div>
                 <div className="clue-row">
-                    <div className="clue">1 1</div>
-                    <div className="clue">1</div>
-                    <div className="clue">1 1</div>
-                    <div className="clue">2 1</div>
+                    {this.renderColumnClue(1)}
+                    {this.renderColumnClue(2)}
+                    {this.renderColumnClue(3)}
+                    {this.renderColumnClue(4)}
                 </div>
             </div>
         )
